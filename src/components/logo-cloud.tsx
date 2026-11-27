@@ -27,17 +27,9 @@ type LogoAsset = {
   fineTuneY?: number
 }
 
+// Only sources Easli really ingests from (backend connectors/registry.py) - never a platform
+// without a connector.
 const jobSources: LogoAsset[] = [
-  {
-    name: 'Indeed',
-    src: '/logo-cloud/indeed.png',
-    canvasWidth: 264,
-    canvasHeight: 148,
-    contentBox: { x: 0, y: 32, width: 264, height: 83 },
-    // No descenders in "indeed" — baseline sits ~7px above the padded
-    // contentBox bottom.
-    baselineInset: 0.084,
-  },
   {
     name: 'Greenhouse',
     src: '/logo-cloud/greenhouse.png',
@@ -62,18 +54,6 @@ const jobSources: LogoAsset[] = [
     baselineInset: 0.219,
   },
   {
-    name: 'LinkedIn',
-    src: '/logo-cloud/linkedin.png',
-    canvasWidth: 2212,
-    canvasHeight: 540,
-    contentBox: { x: 0, y: 0, width: 2212, height: 540 },
-    visualScale: 0.85,
-    // The "in" icon square extends below the "Linked" wordmark's own
-    // baseline (measured on the wordmark region alone, excluding the
-    // icon) — treat that the same way as a descender.
-    baselineInset: 0.156,
-  },
-  {
     name: 'Djinni',
     src: '/logo-cloud/djinni.png',
     canvasWidth: 596,
@@ -93,7 +73,7 @@ export function LogoCloud({
     <div
       className={clsx(
         className,
-        'grid grid-cols-3 items-end justify-items-center gap-x-6 gap-y-8 sm:grid-cols-5 sm:gap-x-8',
+        'grid grid-cols-3 items-end justify-items-center gap-x-6 gap-y-8 sm:gap-x-8',
         'grid-auto-rows-[2.25rem] sm:grid-auto-rows-[2.75rem]',
         '[--logo-row-h:1.5rem] sm:[--logo-row-h:1.75rem]',
       )}
