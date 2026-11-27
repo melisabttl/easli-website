@@ -173,27 +173,16 @@ const positions = [
   { left: 96, top: 176, hover: { x: -3, y: 5, rotate: 3, delay: 0.15 } },
 ]
 
-// The 6 job platforms Easli is connected to.
+// Job sources Easli really ingests from (backend connectors/registry.py), shown
+// only where we have the source's own asset. Never add a platform without a
+// connector. Fewer sources than slots simply leaves the remaining slots empty.
 const connectedSources: ConnectedSource[] = [
-  {
-    name: 'Indeed',
-    src: '/logo-cluster/Indeed-logo.png',
-    // The mark sits well left-of-center in a mostly transparent canvas —
-    // crop to its actual bounding box (measured from the pixel data) at
-    // the default scale so it reads at the same weight as the others.
-    crop: {
-      canvasWidth: 3840,
-      canvasHeight: 2160,
-      contentBox: { x: 1211, y: 25, width: 1418, height: 2110 },
-    },
-  },
   {
     name: 'Greenhouse',
     src: '/logo-cluster/greenhouse.png',
     // Mark already fills its canvas edge-to-edge (no padding to crop), but
-    // its native aspect is tall and narrow — bump the scale so its area
-    // reads at a comparable weight to the squarer marks instead of
-    // looking thin.
+    // its native aspect is tall and narrow - bump the scale so its area
+    // reads at a comparable weight to the squarer marks.
     crop: {
       canvasWidth: 688,
       canvasHeight: 1438,
@@ -204,9 +193,8 @@ const connectedSources: ConnectedSource[] = [
   {
     name: 'Remote OK',
     src: '/logo-cluster/remote-ok.png',
-    // Baked-in black square background — deliberately smaller than the
-    // default scale so it sits inside the white node with clear breathing
-    // room instead of filling the circle edge-to-edge.
+    // Baked-in black square background - deliberately smaller than the
+    // default scale so it sits inside the white node with breathing room.
     crop: {
       canvasWidth: 1416,
       canvasHeight: 1416,
@@ -215,20 +203,31 @@ const connectedSources: ConnectedSource[] = [
     },
   },
   {
-    // No `crop` — renders exactly like Radiant's original Logo: the raw
-    // asset fills the 64px node, using its own baked-in padding.
-    name: 'LinkedIn',
-    src: '/logo-cluster/linkedin.svg',
+    name: 'Himalayas',
+    src: '/logo-cloud/himalayas.svg',
+    // Only the mountain mark (the first path, x 0-80 of the 213x32 wordmark).
+    crop: {
+      canvasWidth: 213,
+      canvasHeight: 32,
+      contentBox: { x: 0, y: 0, width: 80, height: 32 },
+      scale: 0.28,
+    },
   },
   {
-    name: 'Upwork',
-    src: '/logo-cluster/upwork.svg',
-  },
-  {
-    name: 'We Work Remotely',
-    src: '/logo-cluster/we-work-remotely.svg',
+    name: 'Djinni',
+    src: '/logo-cloud/djinni.png',
+    // The wordmark's own bounding box within the padded canvas.
+    crop: {
+      canvasWidth: 596,
+      canvasHeight: 335,
+      contentBox: { x: 198, y: 124, width: 199, height: 85 },
+      scale: 0.27,
+    },
   },
 ]
+
+// Slot used by each source, in order: right, top-right, bottom-left, top-left.
+const SLOT_ORDER = [0, 1, 5, 4]
 
 export function LogoCluster() {
   return (
@@ -236,8 +235,9 @@ export function LogoCluster() {
       <Circles />
       <div className="absolute left-1/2 h-full w-104 -translate-x-1/2">
         <MainLogo />
-        {positions.map((position, i) => {
-          const source = connectedSources[i]
+        {connectedSources.map((source, i) => {
+          // Spread the sources around both sides of the center mark.
+          const position = positions[SLOT_ORDER[i] ?? i]
           return (
             <Logo
               key={source.name}

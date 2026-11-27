@@ -25,8 +25,9 @@ function Header() {
       </Heading>
       <Lead className="mt-6 max-w-3xl">
         Easli finds relevant roles, evaluates them against your Career
-        Profile, and prepares a tailored CV and cover letter for each one. You
-        review everything and submit the final application yourself. Every
+        Profile, and prepares a tailored CV and cover letter for each one.
+        Review and submit each application yourself, or turn on Auto Apply
+        for supported company career sites. Every
         plan is priced around complete AI applications — how many roles Easli
         fully prepares for you.
       </Lead>
@@ -205,10 +206,13 @@ function FrequentlyAskedQuestions() {
               Does Easli submit applications for me?
             </dt>
             <dd className="mt-4 text-sm/6 text-gray-600">
-              No. Easli finds relevant roles, prepares a tailored CV and cover
-              letter for each one, and fills in supported application forms.
-              You review everything and submit the final application to the
-              employer yourself.
+              Only if you turn on Auto Apply. By default, Easli finds relevant
+              roles, prepares a tailored CV and cover letter for each one, and
+              fills in supported application forms, and you review and
+              submit. With Auto Apply on, Easli can submit applications on
+              supported company career sites for you, and asks you when it
+              needs an answer only you can give. Failed or unconfirmed
+              applications never use your allowance.
             </dd>
           </dl>
           <dl>

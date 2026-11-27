@@ -55,10 +55,13 @@ function HelpTopics() {
             Does Easli submit applications for me?
           </dt>
           <dd className="mt-4 text-sm/6 text-gray-600">
-            No. Easli prepares a tailored CV and cover letter for each role
-            and fills in supported application forms. Filling in a form does
-            not send it. You review everything and submit the final
-            application to the employer yourself.
+            Only if you turn on Auto Apply. By default, Easli prepares a
+            tailored CV and cover letter for each role and fills in supported
+            application forms, and you review and submit. With Auto Apply on,
+            Easli can submit applications on supported company career sites
+            for you. It stops and asks you when a form needs an answer only
+            you can give or a security check, and an application only counts
+            as submitted once the employer&rsquo;s site confirms it.
           </dd>
         </dl>
         <dl>

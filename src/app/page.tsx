@@ -88,7 +88,7 @@ function BentoSection() {
         <BentoCard
           eyebrow="Connected sources"
           title="Connected to where jobs are posted."
-          description="Easli pulls relevant roles from job platforms into one place, so you don’t have to search each one separately."
+          description="Easli pulls relevant roles from remote job boards and company career pages into one place, so you don’t have to search each one separately."
           graphic={<LogoCluster />}
           className="lg:col-span-2"
         />
